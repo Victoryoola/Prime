@@ -150,38 +150,23 @@ require APPROOT . '/views/include/footer.php';
 ?>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
-
     $(document).ready(function () {
         $('#stateID').change(function () {
-            var stateId = $(this).val(); // Get selected state ID
+            var stateId = $(this).val();
 
             if (stateId) {
                 $.ajax({
                     url: '<?php echo URLROOT ?>/Estate/ajax/lgas',
                     type: 'POST',
-                    data: { stateId: stateId },  // Send the JS variable to PHP
-                    success: function (response) {
-                        console.log('Server response:', response);
-
-                        // Parse JSON response
-                        const lgaList = JSON.parse(response);
-
-                        // Ensure lgaList is an array
-                        if (Array.isArray(lgaList)) {
-                            const lgaSelect = $('#lgas');
-                            lgaSelect.empty(); // Clear previous options
-                            lgaSelect.append('<option value="">Select...</option>'); // Add default option
-
-                            // Append new options
-                            lgaList.forEach(function (lga) {
-                                lgaSelect.append('<option value="' + lga.id + '">' + lga.lga + '</option>');
-                            });
-                        } else {
-                            console.error('Expected an array, but received:', lgaList);
-                        }
+                    dataType: 'json',
+                    data: { stateId: stateId },
+                    success: function (lgaList) {
+                        const lgaSelect = $('#lgas');
+                        lgaSelect.empty().append('<option value="">Select...</option>');
+                        lgaList.forEach(function (lga) {
+                            lgaSelect.append('<option value="' + lga.id + '">' + lga.lga + '</option>');
+                        });
                     },
                     error: function (xhr, status, error) {
                         console.error('AJAX Error: ' + status + error);
@@ -192,7 +177,6 @@ require APPROOT . '/views/include/footer.php';
             }
         });
     });
-
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
