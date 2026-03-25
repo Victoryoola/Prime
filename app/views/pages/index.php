@@ -2,14 +2,6 @@
 require APPROOT . '/views/include/header.php';
 require APPROOT . '/views/include/navbar.php';
 ?>
-<style>
-    .property-item img {
-        width: 321px;
-        height: 321px;
-        object-fit: cover;
-
-    }
-</style>
 <div class="hero">
     <div class="hero-slide">
         <div class="img overlay"
