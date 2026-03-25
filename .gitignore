@@ -1,0 +1,17 @@
+# IDE configuration and files
+.kiro/
+
+# Environment variables
+.env
+
+# Dependencies
+node_modules/
+
+# Database config (contains credentials)
+app/config/config.php
+
+# User-uploaded files
+public/agents/cvFiles/
+public/agents/idFiles/
+public/buyers/cvFiles/
+public/images/
